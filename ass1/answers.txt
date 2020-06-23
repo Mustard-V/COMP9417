@@ -39,7 +39,7 @@
 --- effect due to increasing the size of the training set:
 
 --- (1) on some datasets error is reduced, i.e., some show a learning curve
---- (2) on most datasets error is reduced, i.e., most show a learning curve
+ (2) on most datasets error is reduced, i.e., most show a learning curve
 --- (3) on all datasets error is reduced, i.e., all show a learning curve
 --- (4) error was basically unchanged, i.e., no learning curve
 --- (5) Decision Trees are better than Nearest Neighbour learning algorithms 
