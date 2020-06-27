@@ -14,8 +14,8 @@
 *** Last revised: Fri 19 Jun 2020 15:13:46 AEST
 --- 
 --- Please add your details on the next two lines.
-*** Student Name:
-*** Student Number: 
+*** Student Name:Zishuo Li
+*** Student Number:5155437
 --------------------------------------------------------------
 
 *** ANSWERS:
@@ -57,8 +57,8 @@
 ********************************************************************************
 *** Algorithm            After 10% training	After 100% training
 ********************************************************************************
-*** Nearest Neighbour      Your result              Your result      
-*** Decision Tree          Your result              Your result      
+*** Nearest Neighbour      23.59              47.77      
+*** Decision Tree          39.47              69.86      
 ********************************************************************************
 
 --- The rest of this question has two multiple-choice parts, each worth 1 mark.
@@ -71,7 +71,7 @@
 --- (1) 10% of the data is not enough for learning a good model
 --- (2) only the Decision Tree learner reduces error with 10% of the data
 --- (3) only the Nearest Neighbour learner reduces error with 10% of the data
---- (4) both algorithms learn models that reduce error by more than 20% with 10% of the data
+ (4) both algorithms learn models that reduce error by more than 20% with 10% of the data
 
 *** Part 2:
 --- To answer this question you will need to look at the results on the 
@@ -83,7 +83,7 @@
 
 --- (1) Nearest Neighbour can fit a complex target function well when there is a lot of data and the data representation contains only continuous-valued attributes
 --- (2) Nearest Neighbour can fit a complex target function well when there is not much data and the data representation contains only discrete-valued attributes
---- (3) Nearest Neighbour cannot be an accurate learning method when the data representation contains only continuous-valued attributes
+ (3) Nearest Neighbour cannot be an accurate learning method when the data representation contains only continuous-valued attributes
 --- (4) Decision Trees cannot be an accurate learning method when the data representation contains only continuous-valued attributes
 
 --------------------------------------------------------------
@@ -102,7 +102,7 @@
 
 --- (1) generate the vocabulary and count the frequency of words independently for the training and test sets
 --- (2) generate the vocabulary and count the frequency of words overall for the combined training and test sets
---- (3) generate the vocabulary overall for the combined training and test sets, and count the frequency of words independently for the training and test sets
+ (3) generate the vocabulary overall for the combined training and test sets, and count the frequency of words independently for the training and test sets
 --- (4) generate the vocabulary independently for the training and test sets, and count the frequency of words overall for the combined training and test sets
 
 *** Part 2:
@@ -118,7 +118,7 @@
 
 --- (1) text classification is never possible using just the class-conditional probabilities of the words
 --- (2) Multinomial Naive Bayes cannot be used for text classification
---- (3) the class-conditional probabilities for around 2/3 of the words do not really change the classification accuracy of the model
+ (3) the class-conditional probabilities for around 2/3 of the words do not really change the classification accuracy of the model
 --- (4) on large datasets the prior probabilities of the class labels will dominate the class-conditional probabilities of the words
 
 *** END
