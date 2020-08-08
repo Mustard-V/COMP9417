@@ -11,17 +11,21 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 import sys
 import warnings
-###initial inport data and classification it 
-train_set = pd.read_csv('D:\\2020T2\\comp9417\COMP9417\\assignment\\train.csv')
-test_set = pd.read_csv('D:\\2020T2\\comp9417\\COMP9417\\assignment\\test.csv')
-train_set.index = train_set['id']
-test_set.index = test_set['id']
+import data_analysis
 
-print("demension of train"+ str(train_set.shape) + "demension of test " + str(test_set.shape))
-###try linear regression to make the whole algrithem run.
-###then use knn algrithem train the data remember to use cross validation to redeuce over-fit 
-print(train_set.head(5))
 
-print(test_set.head(5))
+train_data, test_data = data_analysis.insert_data();
 
-###use test set to show the result
+# 1.) Extract the target variable `revenue` and use the `id` column as index of that data frame
+df_trainval_y = train_data[['id','revenue']].set_index('id')
+
+# 2.) Prepare the training and test data by using the function we defined above
+df_trainval_X = data_analysis.create_data_for_linear_regression(train_data)
+df_test_X  = data_analysis.create_data_for_linear_regression(test_data)
+
+# 3.) Create columns in train/test dataframes if they only exist in one of them (can happen through one hot encoding / get_dummies)
+#  Example: There are no status=`Post Production` entries in the training set, but there are some in the test set.
+df_trainval_X, df_test_X = df_trainval_X.align(df_test_X, join='outer', axis=1, fill_value=0)
+
+# 4.) Show the first rows of one of the prepared tables
+df_trainval_X.head(2)
