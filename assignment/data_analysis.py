@@ -39,6 +39,13 @@ def create_data_for_linear_regression(df):
 
     # b.) Only use easy to process features
     #  Warning: huge information loss here, you should propably include more features in your production code.
+    # production companies
+#all_movies["companies_list"] = all_movies["production_companies"].apply(
+   # get_list_of_values, args=('name',))
+#most_cmn_comps = find_most_common("companies_list", 10)
+#one_hot_encode_most_common("production_companies", "companies_list", most_cmn_comps)
+
+#记得使用mostcommon和记得把dummies之后的内容，把原来的内容给删掉要不然影响内容
     df = df[['budget', 'original_language' ,'popularity', 'runtime', 'status','production_companies','production_countries','spoken_languages']]
     
     # c.) One-Hot-Encoding for all nominal data
