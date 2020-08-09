@@ -22,13 +22,14 @@ def insert_data():
     train_set.index = train_set['id']
     test_set.index = test_set['id']
 
-    print("demension of train"+ str(train_set.shape) + "demension of test " + str(test_set.shape))
+    #print("demension of train"+ str(train_set.shape) + "demension of test " + str(test_set.shape))
+
     ###try linear regression to make the whole algrithem run.
     ###then use knn algrithem train the data remember to use cross validation to redeuce over-fit 
     ###test and print top five list
-    print(train_set.head(5))
+    #print(train_set.head(5))
 
-    print(test_set.head(5))
+    #print(test_set.head(5))
     return train_set, test_set
 
 ###this is used for initial linear regression
@@ -38,14 +39,12 @@ def create_data_for_linear_regression(df):
 
     # b.) Only use easy to process features
     #  Warning: huge information loss here, you should propably include more features in your production code.
-    df = df[['budget', 'original_language' ,'popularity', 'runtime', 'status']]
+    df = df[['budget', 'original_language' ,'popularity', 'runtime', 'status','production_companies','production_countries','spoken_languages']]
     
     # c.) One-Hot-Encoding for all nominal data
     df = pd.get_dummies(df)
-    
+    print(df.head(10))
     # d.) The `runtime` feature is not filled in 2 of the rows. We replace those empty cells / NaN values with a 0.
     #  Warning: in production code, please use a better method to deal with missing cells like interpolation or additional `is_missing` feature columns.
     return df.fillna(0)
 
-def create_data_for_DEA(train_data, test_data):
-    return 0;
