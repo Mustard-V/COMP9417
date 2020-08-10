@@ -28,7 +28,9 @@ class knn_model:
     
     #Validation
     X_train, X_val, y_train, y_val = train_test_split(train_X_value, train_Y_value, test_size=0.7, random_state=56)
-
+    #X_train, X_val, y_train, y_val = train_test_split(train_X_value, train_Y_value, test_size=0.5)
+    #X_train, X_val, y_train, y_val = train_test_split(train_X_value, train_Y_value, test_size=0.6)
+    #X_train, X_val, y_train, y_val = train_test_split(train_X_value, train_Y_value, test_size=0.3)
     #Scale_X, thanks alexander's great work in https://www.kaggle.com/alexandermelde/code-template-for-simple-regression-prediction
     #really useful, We need the scale input value and the y value to reduce the dependency, Improve the accuracy of the model
     X_scaler = StandardScaler()
@@ -56,8 +58,7 @@ class knn_model:
             j = j + 1
     print("The accuracy in validation set " , i/j)
     #####looks like ok
-
-
+    
     #apply the model on test
     test_result = reg.predict(X_test_scaled)
     #reverse the scaled y in to revenue
@@ -66,13 +67,12 @@ class knn_model:
     #print(test_y_scaled[0])
 ############################################
 ###### Write the result to submission.csv
-    # 1.) Add the predicted values to the original test data
+    # Add the predicted values to the original test data
     test_result = test_data.assign(revenue=y_test_pred)
 
-# 2.) Extract a table of ids and their revenue predictions
+    # Extract a table of ids and their revenue predictions
     df_test_y = test_result[['id','revenue']].set_index('id')
-
-# 3.) save that table to a csv file. On Kaggle, the file will be visible in the "output" tab if the kernel has been commited at least once.
+    #write to file 
     df_test_y.to_csv("submission.csv")
 
 
