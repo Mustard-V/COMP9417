@@ -21,37 +21,37 @@ def insert_data():
     ###make it easier to oprate data.
     train_set.index = train_set['id']
     test_set.index = test_set['id']
-
     #print("demension of train"+ str(train_set.shape) + "demension of test " + str(test_set.shape))
-
-    ###try linear regression to make the whole algrithem run.
-    ###then use knn algrithem train the data remember to use cross validation to redeuce over-fit 
-    ###test and print top five list
-    #print(train_set.head(5))
-
     #print(test_set.head(5))
     return train_set, test_set
 
 ###this is used for initial linear regression
-def create_data_for_linear_regression(df):
-    # a.) Use the `id` feature as the index column of the data frame
-    df = df.set_index('id')
-
-    # b.) Only use easy to process features
-    #  Warning: huge information loss here, you should propably include more features in your production code.
-    # production companies
-#all_movies["companies_list"] = all_movies["production_companies"].apply(
-   # get_list_of_values, args=('name',))
-#most_cmn_comps = find_most_common("companies_list", 10)
-#one_hot_encode_most_common("production_companies", "companies_list", most_cmn_comps)
-
-#记得使用mostcommon和记得把dummies之后的内容，把原来的内容给删掉要不然影响内容
-    df = df[['budget', 'original_language' ,'popularity', 'runtime', 'status','production_companies','production_countries','spoken_languages']]
+def create_data_for_linear_regression(train_set, test_set):
     
-    # c.) One-Hot-Encoding for all nominal data
-    df = pd.get_dummies(df)
-    print(df.head(10))
-    # d.) The `runtime` feature is not filled in 2 of the rows. We replace those empty cells / NaN values with a 0.
-    #  Warning: in production code, please use a better method to deal with missing cells like interpolation or additional `is_missing` feature columns.
-    return df.fillna(0)
+    train_set = find_feature(train_set)
+    test_set = find_feature(test_set)
+    #after we decide the veriable to use, we need to dummy these value make it easier fo knn 
+    train_set = pd.get_dummies(train_set)
+    test_set = pd.get_dummies(test_set)
 
+    print(test_set.columns)
+    
+    return train_set.fillna(0), test_set.fillna(0)
+
+def find_feature(train_set):
+    #there are 22 variable column in dataset, we need to We need to figure out what is necessary， otherwise the dataset is too complex.
+   
+    #transfer relase date to dummy months...form Box Office Beginner
+    train_set.loc[train_set['release_date'].isnull(), 'release_date'] = '0/0/00'
+    train_set["release_month"] = train_set["release_date"].apply(lambda x: x.split("/")[0])
+    #print(train_set["release_month"].value_counts())
+    dummy_months = pd.get_dummies(train_set["release_month"], prefix="month")
+
+    #month_pivot = train_set.pivot_table(index="release_month", values="revenue", aggfunc=np.mean)
+    train_set = pd.concat([train_set[['budget', 'original_language' ,'popularity', 'runtime', 'status','production_companies','production_countries','spoken_languages']], dummy_months], axis=1)
+
+    #replace 
+    return train_set
+
+#train_set, test_set = insert_data()
+#create_data_for_linear_regression(train_set, test_set)
