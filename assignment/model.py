@@ -75,5 +75,6 @@ class knn_model:
 # 3.) save that table to a csv file. On Kaggle, the file will be visible in the "output" tab if the kernel has been commited at least once.
     df_test_y.to_csv("submission.csv")
 
-    #pd.read_csv("\\sample_submission.csv").head(5)
+
+#run the model
 k1 = knn_model
